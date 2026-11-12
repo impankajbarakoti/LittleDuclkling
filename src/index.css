@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+.hero-section,
+.core-values-section {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.navbar {
+  font-family: 'Patrick Hand', cursive;
+}
+
+.site-footer {
+  font-family: 'Quicksand', sans-serif;
+  color: #e1e7e5;
+  background-color: #2a3735;
+}
+
+.site-footer h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-weight: 400;
+}
+
+.hero-section h1,
+.core-values-section h2,
+.core-values-section h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-weight: 400;
+}
+
+.core-value-card:hover .core-value-image {
+  transform: scale(1.1);
+  border-width: 5px;
+}
+
+.core-value-card:hover .core-value-image img {
+  transform: scale(1.15);
+}
+
+.core-value-card:hover .core-value-title {
+  letter-spacing: 0.05em;
+}
