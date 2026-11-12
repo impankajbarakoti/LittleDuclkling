@@ -208,93 +208,176 @@
 // export default Footer;
 
 
-import React from 'react';
-import logo from "../assets/Duckling.png"
+
+import React, { useEffect, useState } from 'react';
+import { FiArrowUp } from 'react-icons/fi';
+import logo from "../assets/Duckling.png";
 
 const Footer = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      const progress =
+        scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+      setScrollProgress(Math.min(100, Math.max(0, progress)));
+      setShowButton(scrollTop > 250);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <footer className="w-full bg-[#0f172a] text-white pt-16 pb-12 px-4 sm:px-6 md:px-12 font-quicksand border-t-0 md:border-t md:border-gray-800">
-      {/* Google Fonts */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;600;700&display=swap');
-        .font-patrick { font-family: 'Patrick Hand', cursive; }
-        .font-quicksand { font-family: 'Quicksand', sans-serif; }
-      `}</style>
+    <>
+      <footer className="w-full bg-[#0f172a] text-white pt-16 pb-12 px-4 sm:px-6 md:px-12 font-quicksand border-t-0 md:border-t md:border-gray-800">
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-gray-800">
-        
-        {/* Column 1: Brand Logo & Info */}
-        <div className="md:col-span-5 space-y-4">
-          <div className="flex items-center gap-3.5">
-            <img
-              src={logo}
-              alt="Little Duckling's Kindergarten Logo"
-              className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-contain bg-white p-1.5 shadow-md flex-shrink-0"
-            />
-            <h3 className="text-2xl sm:text-3xl font-bold font-patrick text-[#fca92a] tracking-wide leading-tight">
-              Little Duckling's Kindergarten
-            </h3>
-          </div>
+        {/* Google Fonts */}
+        <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;600;700&display=swap');
+          .font-patrick { font-family: 'Patrick Hand', cursive; }
+          .font-quicksand { font-family: 'Quicksand', sans-serif; }
+        `}</style>
 
-          <p className="text-gray-400 text-sm sm:text-base leading-relaxed max-w-sm">
-            Nurturing young minds with love, laughter, and purposeful play in Azad Nagar, Hisar. A safe second home for your child's early education.
-          </p>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-gray-800">
 
-          <div className="pt-2 text-sm text-gray-300 space-y-1">
-            <p><strong className="text-white">Phone:</strong> 7988411414</p>
-            <p><strong className="text-white">Address:</strong> Plot No 7, Geeta Colony, Azad Nagar, Hisar, Haryana, 125001</p>
-          </div>
-        </div>
+          {/* Column 1: Brand Logo & Info */}
+          <div className="md:col-span-5 space-y-4">
+            <div className="flex items-center gap-3.5">
+              <img
+                src={logo}
+                alt="Little Duckling's Kindergarten Logo"
+                className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-contain bg-white p-1.5 shadow-md flex-shrink-0"
+              />
 
-        {/* Column 2: Quick Links */}
-        <div className="md:col-span-3 space-y-4">
-          <h4 className="text-lg font-bold font-patrick tracking-wider text-white uppercase">
-            Quick Links
-          </h4>
-          <ul className="space-y-2.5 text-sm text-gray-400">
-            <li>
-              <a href="/" className="hover:text-[#fca92a] transition-colors">Home</a>
-            </li>
-            <li>
-              <a href="/about" className="hover:text-[#fca92a] transition-colors">About Us</a>
-            </li>
-            <li>
-              <a href="/services" className="hover:text-[#fca92a] transition-colors">Services & Programs</a>
-            </li>
-            <li>
-              <a href="/contact" className="hover:text-[#fca92a] transition-colors">Contact & Map</a>
-            </li>
-          </ul>
-        </div>
-
-        {/* Column 3: Timing & Hours */}
-        <div className="md:col-span-4 space-y-4">
-          <h4 className="text-lg font-bold font-patrick tracking-wider text-white uppercase">
-            Working Hours
-          </h4>
-          <div className="text-sm text-gray-400 space-y-2">
-            <div className="flex justify-between border-b border-gray-800 pb-2">
-              <span>Monday – Saturday:</span>
-              <span className="text-white font-semibold">8:00 AM – 12:00 PM</span>
+              <h3 className="text-2xl sm:text-3xl font-bold font-patrick text-[#fca92a] tracking-wide leading-tight">
+                Little Duckling's Kindergarten
+              </h3>
             </div>
-            <div className="flex justify-between pb-2">
-              <span>Sunday:</span>
-              <span className="text-gray-500">Closed</span>
+
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed max-w-sm">
+              Nurturing young minds with love, laughter, and purposeful play in Azad Nagar, Hisar. A safe second home for your child's early education.
+            </p>
+
+            <div className="pt-2 text-sm text-gray-300 space-y-1">
+              <p>
+                <strong className="text-white">Phone:</strong> 7988411414
+              </p>
+              <p>
+                <strong className="text-white">Address:</strong> Plot No 7, Geeta Colony, Azad Nagar, Hisar, Haryana, 125001
+              </p>
             </div>
           </div>
-          <p className="text-xs text-gray-500 pt-2">
-            Feel free to reach out to us anytime during working hours with your queries!
-          </p>
+
+          {/* Column 2: Quick Links */}
+          <div className="md:col-span-3 space-y-4">
+            <h4 className="text-lg font-bold font-patrick tracking-wider text-white uppercase">
+              Quick Links
+            </h4>
+
+            <ul className="space-y-2.5 text-sm text-gray-400">
+              <li>
+                <a href="/" className="hover:text-[#fca92a] transition-colors">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="/about" className="hover:text-[#fca92a] transition-colors">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="/services" className="hover:text-[#fca92a] transition-colors">
+                  Services & Programs
+                </a>
+              </li>
+              <li>
+                <a href="/contact" className="hover:text-[#fca92a] transition-colors">
+                  Contact & Map
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Timing & Hours */}
+          <div className="md:col-span-4 space-y-4">
+            <h4 className="text-lg font-bold font-patrick tracking-wider text-white uppercase">
+              Working Hours
+            </h4>
+
+            <div className="text-sm text-gray-400 space-y-2">
+              <div className="flex justify-between border-b border-gray-800 pb-2">
+                <span>Monday – Saturday:</span>
+                <span className="text-white font-semibold">
+                  8:00 AM – 12:00 PM
+                </span>
+              </div>
+
+              <div className="flex justify-between pb-2">
+                <span>Sunday:</span>
+                <span className="text-gray-500">Closed</span>
+              </div>
+            </div>
+
+            <p className="text-xs text-gray-500 pt-2">
+              Feel free to reach out to us anytime during working hours with your queries!
+            </p>
+          </div>
         </div>
 
-      </div>
+        {/* Copyright Bar */}
+        <div className="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+          <p>
+            © {new Date().getFullYear()} Little Duckling's Kindergarten. All rights reserved.
+          </p>
+        </div>
+      </footer>
 
-      {/* Copyright Bar */}
-      <div className="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-        <p>© {new Date().getFullYear()} Little Duckling's Kindergarten. All rights reserved.</p>
-        
-      </div>
-    </footer>
+      {/* Scroll To Top - Circular Progress Button */}
+      <button
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+        title="Back to top"
+        className={`
+          fixed bottom-6 right-5 sm:bottom-8 sm:right-8 z-[100]
+          flex items-center justify-center
+          w-12 h-12 sm:w-14 sm:h-14
+          rounded-full
+          bg-[#0f172a]
+          shadow-[0_5px_20px_rgba(0,0,0,0.25)]
+          hover:scale-110 active:scale-95
+          transition-all duration-300 ease-out
+          ${showButton
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 translate-y-5 pointer-events-none"
+          }
+        `}
+        style={{
+          background: `linear-gradient(#0f172a, #0f172a) padding-box, conic-gradient(#fca92a ${scrollProgress}%, rgba(255,255,255,0.15) ${scrollProgress}%) border-box`,
+          border: "3px solid transparent",
+        }}
+      >
+        <FiArrowUp
+          size={23}
+          className="text-white transition-transform duration-300 group-hover:-translate-y-1"
+        />
+      </button>
+    </>
   );
 };
 
