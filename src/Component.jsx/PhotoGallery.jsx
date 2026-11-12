@@ -173,22 +173,50 @@ const PhotoGallery = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm font-quicksand">
           <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
             
-            {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 font-patrick">
-                  <a href="https://little-ducklings.grexa.site/" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                    [Little Duckling's Kindergarten](http://googleusercontent.com/map_location_reference/0)
-                  </a> · Photos
-                </h3>
-              </div>
-              <button 
-                onClick={closeModal}
-                className="w-9 h-9 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full text-gray-700 transition-colors cursor-pointer"
-              >
-                ✕
-              </button>
-            </div>
+           
+{/* Modal Header */}
+<div className="relative flex items-center justify-between px-4 py-4 pr-16 border-b border-gray-100 sm:px-6">
+
+  <div className="min-w-0">
+    
+<h3 className="text-base sm:text-lg font-bold text-gray-900 font-patrick">
+  <a
+    href="https://www.google.com/maps/search/?api=1&query=Little+Duckling%27s+Kindergarten+Hisar+Haryana"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:underline hover:text-orange-500 transition-colors"
+  >
+    Little Duckling's Kindergarten
+  </a>
+  {" "}· Photos
+</h3>
+
+  </div>
+
+  {/* Always Visible Close Button */}
+  <button
+    type="button"
+    onClick={closeModal}
+    aria-label="Close photo gallery"
+    className="absolute top-1/2 right-3 sm:right-5 -translate-y-1/2 z-[70] flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg hover:bg-orange-500 active:scale-90 transition-all duration-200 cursor-pointer"
+  >
+    <svg
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
+        d="M6 6l12 12M18 6L6 18"
+      />
+    </svg>
+  </button>
+
+</div>
+
 
             {/* Modal Image Body with Book Page Swipe Animation */}
             <div
